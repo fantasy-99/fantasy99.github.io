@@ -609,6 +609,22 @@ kbd {
   -ms-transform: rotate(0);
   transform: rotate(0);
 }
+body {
+  position: relative;
+}
+body::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  height: 100vh;
+  z-index: -2;
+  background: url("https://img2018.cnblogs.com/blog/1534387/201907/1534387-20190714093622298-1985117667.png") no-repeat center/cover;
+}
 .container {
   white-space: normal;
   word-wrap: break-word;
