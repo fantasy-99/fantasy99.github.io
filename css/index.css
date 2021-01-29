@@ -1140,10 +1140,6 @@ body::after {
   font-weight: 600;
   color: var(--color-gray-950);
 }
-.sidebar-ov-cc {
-  padding-top: 0.5rem;
-  text-align: center;
-}
 .sidebar-reading {
   overflow: hidden;
   margin-top: 0.5em;
