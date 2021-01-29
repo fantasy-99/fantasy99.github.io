@@ -935,12 +935,6 @@ body::after {
   font-weight: 400;
   color: #f5f6f7;
 }
-.footer__icon {
-  display: inline-block;
-  margin: 0 0.4rem;
-  font-size: 1em;
-  color: #f00;
-}
 .footer-inner {
   position: relative;
   padding: 1rem;
