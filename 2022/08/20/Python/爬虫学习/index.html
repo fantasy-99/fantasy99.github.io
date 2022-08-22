@@ -1,0 +1,532 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="爬虫学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫学习">
+<meta property="og:url" content="https://956256648.github.io/2022/08/20/Python/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Fantasy&#39;s Blog">
+<meta property="og:description" content="爬虫学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-20T06:20:38.617Z">
+<meta property="article:modified_time" content="2022-08-22T13:04:45.213Z">
+<meta property="article:author" content="Fantasy">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary"><title>爬虫学习 | Fantasy's Blog</title><link ref="canonical" href="https://956256648.github.io/2022/08/20/Python/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: {"avoidBanner":false},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/links/"><span class="header-nav-menu-item__icon"><i class="fas fa-link"></i></span><span class="header-nav-menu-item__text">友链</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Fantasy's Blog</div><div class="header-banner-info__subtitle">隐约雷鸣 阴霾天空</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">爬虫学习</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-08-20</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-08-22</span></span></div></header><div class="post-body"><p>简单学下爬虫，首先要明确一点，爬虫不是非得用python写，只是由于其学起来简单，写爬虫也方便，所以常常用python写爬虫。另外，相关的库也很多，比较方便。</p>
+<p>robots.txt协议是一个君子协议，规定了网站中哪些数据可以爬，哪些不可以爬。</p>
+
+        <h1 id="web请求过程"   >
+          <a href="#web请求过程" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#web请求过程"></a> Web请求过程</h1>
+      
+
+        <h2 id="服务器渲染"   >
+          <a href="#服务器渲染" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#服务器渲染"></a> 服务器渲染</h2>
+      
+<p>在服务器那边直接把数据和HTML整合到一起，统一返回给浏览器，在页面源代码中能看到数据</p>
+
+        <h2 id="客户端渲染"   >
+          <a href="#客户端渲染" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#客户端渲染"></a> 客户端渲染</h2>
+      
+<p>第一次请求智能拿到一个HTML骨架，第二次请求能拿到数据，拼接之后才能正确显示。在页面源代码中看不到数据。</p>
+
+        <h1 id="http协议"   >
+          <a href="#http协议" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#http协议"></a> HTTP协议</h1>
+      
+
+        <h2 id="请求"   >
+          <a href="#请求" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#请求"></a> 请求</h2>
+      
+<p>请求行：请求方式（get/post） 请求url地址，协议</p>
+<p>请求头：放一些服务器要使用的附加信息</p>
+<p>请求体：一般放一些请求参数</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET：显示提交（一般查询东西的时候用）</span><br><span class="line">POST：隐式提交（一般在修改的时候用）</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="请求头里的重要内容"   >
+          <a href="#请求头里的重要内容" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#请求头里的重要内容"></a> 请求头里的重要内容</h2>
+      
+<p>User-Agent：请求载体的身份标识（用什么发送的请求，涉及到电脑、浏览器等信息）</p>
+<p>Referer：防盗链（这个请求是从哪个页面来的？反爬会用到）</p>
+<p>cookie：本地字符串数据信息（用户登录信息，反爬的token）</p>
+
+        <h2 id="响应"   >
+          <a href="#响应" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#响应"></a> 响应</h2>
+      
+<p>状态行：协议，状态码</p>
+<p>响应头：放一些客户端要用的附加信息</p>
+<p>响应体：服务器返回客户端真正要的内容</p>
+
+        <h2 id="响应头里的重要内容"   >
+          <a href="#响应头里的重要内容" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#响应头里的重要内容"></a> 响应头里的重要内容</h2>
+      
+<p>cookie：本地字符串数据信息（用户登录信息，反爬的token）</p>
+<p>各种神奇的字符串，一般都是token字样，用于防止攻击和反爬</p>
+
+        <h1 id="requests入门"   >
+          <a href="#requests入门" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#requests入门"></a> requests入门</h1>
+      
+<p>requests是第三方库，需要安装</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#发送post请求，发送的数据必须在字典中，通过data参数进行传递</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#百度翻译</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;https://fanyi.baidu.com/sug&quot;</span></span><br><span class="line">dic = &#123;	<span class="comment">#参数</span></span><br><span class="line">    <span class="string">&quot;kw&quot;</span>: <span class="string">&quot;dog&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">resp = requests.post(url, data=dic)</span><br><span class="line"></span><br><span class="line">print(resp.json())  <span class="comment">#json格式</span></span><br><span class="line">resp.close()</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#get请求，参数是params</span><br><span class="line"></span><br><span class="line">#豆瓣分类排行榜</span><br><span class="line">import requests</span><br><span class="line">url &#x3D; &quot;https:&#x2F;&#x2F;movie.douban.com&#x2F;j&#x2F;chart&#x2F;top_list&quot;</span><br><span class="line">param &#x3D; &#123;  #get的参数</span><br><span class="line">    &quot;type&quot;: &quot;24&quot;,</span><br><span class="line">    &quot;interval_id&quot;: &quot;100:90&quot;,</span><br><span class="line">    &quot;action&quot;: &quot;&quot;,</span><br><span class="line">    &quot;start&quot;: 0,</span><br><span class="line">    &quot;limit&quot;: 20,</span><br><span class="line">&#125;</span><br><span class="line">headers &#x3D; &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko&#x2F;20100101 Firefox&#x2F;103.0&quot;</span><br><span class="line">&#125;</span><br><span class="line">resp &#x3D; requests.get(url&#x3D;url, params&#x3D;param, headers&#x3D;headers)</span><br><span class="line"></span><br><span class="line">print(resp.json())</span><br><span class="line">resp.close()</span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="正则表达式re"   >
+          <a href="#正则表达式re" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#正则表达式re"></a> 正则表达式RE</h1>
+      
+<p>常用元字符：</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.	匹配除换行符以外的任意字符</span><br><span class="line">\w	匹配字母或数字或下划线</span><br><span class="line">\s	匹配任意的空白符</span><br><span class="line">\d	匹配数字</span><br><span class="line">\n	匹配一个换行符</span><br><span class="line">\t	匹配一个制表符</span><br><span class="line"></span><br><span class="line">^	匹配字符串的开始</span><br><span class="line">$	匹配字符串的结尾</span><br><span class="line"></span><br><span class="line">\W	匹配非字母或数字或下划线</span><br><span class="line">\D	匹配非数字</span><br><span class="line">\S	匹配非空白符</span><br><span class="line"></span><br><span class="line">a|b	匹配字符a或字符b</span><br><span class="line">()	匹配括号内的表达式，也表示一个组</span><br><span class="line">[...]	匹配字符串中的字符</span><br><span class="line">[^...]	匹配除了字符组中字符的所有字符</span><br></pre></td></tr></table></div></figure>
+<p>量词，控制前面的元字符出现的次数</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*	重复<span class="number">0</span>次或更多次</span><br><span class="line">+	重复<span class="number">1</span>次或更多次</span><br><span class="line">?	重复0次或1次</span><br><span class="line">&#123;n&#125;	重复n次</span><br><span class="line">&#123;n,&#125;	重复n次或更多次</span><br><span class="line">&#123;n,m&#125;	重复n~m次</span><br></pre></td></tr></table></div></figure>
+<p>贪婪匹配和惰性匹配</p>
+<figure class="highlight"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#会使内容尽可能长</span></span><br><span class="line">.*	贪婪匹配</span><br><span class="line"></span><br><span class="line"><span class="comment">#会使内容尽可能短，回溯</span></span><br><span class="line">.*?	惰性匹配</span><br><span class="line"></span><br><span class="line"><span class="comment">#比如下面这句话，两个正则式子结果不同</span></span><br><span class="line">玩好玩的游戏,什么游戏,吃鸡游戏!</span><br><span class="line"></span><br><span class="line">好玩.*游戏</span><br><span class="line">好玩.*?游戏</span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="re模块"   >
+          <a href="#re模块" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#re模块"></a> RE模块</h1>
+      
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment">#匹配字符串中所有符合的内容，返回的是列表</span></span><br><span class="line">re.findall(<span class="string">r&quot;正则式子&quot;</span>, <span class="string">&quot;字符串&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#匹配字符串中所有符合的内容，返回的是迭代器，从迭代器中拿内容需要.group()</span></span><br><span class="line">it = re.finditer(<span class="string">r&quot;正则式子&quot;</span>, <span class="string">&quot;字符串&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> it</span><br><span class="line">	print(i.group())</span><br><span class="line"> </span><br><span class="line"><span class="comment">#找到一个结果就返回，返回的是match对象，拿数据也需要.group()</span></span><br><span class="line">re.search(<span class="string">r&quot;正则式子&quot;</span>, <span class="string">&quot;字符串&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#这个是从头开始匹配，也是只返回一个结果</span></span><br><span class="line">re.match(<span class="string">r&quot;正则式子&quot;</span>, <span class="string">&quot;字符串&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#预加载正则表达式</span></span><br><span class="line">名字 = re.<span class="built_in">compile</span>(<span class="string">r&quot;正则式子&quot;</span>)</span><br></pre></td></tr></table></div></figure>
+<p>一个例子，从正则表达式中提取所需信息</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">s = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;div class=&#x27;jay&#x27;&gt;&lt;span id=&#x27;1&#x27;&gt;郭麒麟&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class=&#x27;jj&#x27;&gt;&lt;span id=&#x27;2&#x27;&gt;宋铁&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class=&#x27;jolin&#x27;&gt;&lt;span id=&#x27;3&#x27;&gt;大聪明&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class=&#x27;sylar&#x27;&gt;&lt;span id=&#x27;4&#x27;&gt;范思哲&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;div class=&#x27;tory&#x27;&gt;&lt;span id=&#x27;5&#x27;&gt;胡说八道&lt;/span&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># (?P&lt;分组的名字&gt;正则式子) 这样可以提取所需信息</span></span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;&lt;div class=&#x27;.*?&#x27;&gt;&lt;span id=&#x27;\d&#x27;&gt;(?P&lt;aaa&gt;.*?)&lt;/span&gt;&lt;/div&gt;&quot;</span>, re.S)</span><br><span class="line">it = obj.finditer(s)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> it:</span><br><span class="line">    print(i.group(<span class="string">&quot;aaa&quot;</span>))</span><br><span class="line">    </span><br><span class="line"><span class="comment">#re.S表示.可以匹配换行符，这是为了防止只匹配一行。如果不带re.S，可能就只匹配一行内容就结束了。</span></span><br></pre></td></tr></table></div></figure>
+<p>又一个例子，爬取豆瓣top250</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建一个csv文件</span></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;data.csv&quot;</span>, mode=<span class="string">&quot;w&quot;</span>)</span><br><span class="line">csvwriter = csv.writer(f)</span><br><span class="line"></span><br><span class="line"><span class="comment">#多个页面，循环</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    url = <span class="string">f&quot;https://movie.douban.com/top250?start=<span class="subst">&#123;i*<span class="number">25</span>&#125;</span>&amp;filter=&quot;</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    pa_content = resp.text</span><br><span class="line"></span><br><span class="line">    obj = re.<span class="built_in">compile</span>(<span class="string">r&#x27; &lt;li&gt;.*?&lt;span class=&quot;title&quot;&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;.*?&lt;br&gt;(?P&lt;year&gt;.*?)&amp;nbsp&#x27;</span></span><br><span class="line">                     <span class="string">r&#x27;.*?&lt;span class=&quot;rating_num&quot; property=&quot;v:average&quot;&gt;(?P&lt;score&gt;.*?)&lt;/span&gt;&#x27;</span></span><br><span class="line">                     <span class="string">r&#x27;.*?&lt;span&gt;(?P&lt;people&gt;.*?)&lt;/span&gt;&#x27;</span>, re.S)</span><br><span class="line">    result = obj.finditer(pa_content)</span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> result:</span><br><span class="line">        <span class="comment"># print(it.group(&quot;year&quot;).strip())</span></span><br><span class="line">        <span class="comment"># print(it.group(&quot;score&quot;))</span></span><br><span class="line">        <span class="comment"># print(it.group(&quot;people&quot;))</span></span><br><span class="line">        <span class="comment">#year前面有空格，要去掉</span></span><br><span class="line">        dic = it.groupdict()</span><br><span class="line">        dic[<span class="string">&quot;year&quot;</span>] = dic[<span class="string">&quot;year&quot;</span>].strip()</span><br><span class="line">        <span class="comment">#写到文件中</span></span><br><span class="line">        csvwriter.writerow(dic.values())</span><br><span class="line">    resp.close()</span><br><span class="line"></span><br><span class="line">f.close()</span><br></pre></td></tr></table></div></figure>
+<p>又一个例子，电影天堂</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://www.dy2018.com/&quot;</span></span><br><span class="line">resp = requests.get(url, verify=<span class="literal">False</span>) <span class="comment">#去掉安全验证</span></span><br><span class="line">resp.encoding = <span class="string">&quot;gb2312&quot;</span> <span class="comment">#字符集</span></span><br><span class="line">obj1 = re.<span class="built_in">compile</span>(<span class="string">r&quot;2022新片精品.*?&lt;ul&gt;.*?&lt;/li&gt;(?P&lt;ul&gt;.*?)&lt;/ul&gt;&quot;</span>, re.S) <span class="comment">#先获得部分源码</span></span><br><span class="line">obj2 = re.<span class="built_in">compile</span>(<span class="string">r&quot;href=&#x27;(?P&lt;ad&gt;.*?)&#x27;&quot;</span>, re.S)  <span class="comment">#在部分源码中提取链接信息</span></span><br><span class="line">result1 = obj1.finditer(resp.text)</span><br><span class="line"></span><br><span class="line"><span class="comment">#提取子页面链接</span></span><br><span class="line">lst = []</span><br><span class="line"><span class="keyword">for</span> itt <span class="keyword">in</span> result1:</span><br><span class="line">    ul = itt.group(<span class="string">&quot;ul&quot;</span>)</span><br><span class="line">    result2 = obj2.finditer(ul)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#链接</span></span><br><span class="line">    <span class="keyword">for</span> it <span class="keyword">in</span> result2:</span><br><span class="line">        url2 = url + it.group(<span class="string">&quot;ad&quot;</span>).strip(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        lst.append(url2)</span><br><span class="line">resp.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#在子页面提取下载链接</span></span><br><span class="line">obj3 = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;!--xunleiDownList Start--&gt;.*?&lt;tr&gt;.*?href=&quot;(?P&lt;ad&gt;.*?)&quot;&#x27;</span>, re.S)</span><br><span class="line">lst2 = []</span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> lst:</span><br><span class="line">    resp = requests.get(it, verify=<span class="literal">False</span>)</span><br><span class="line">    resp.encoding = <span class="string">&quot;gb2312&quot;</span></span><br><span class="line">    result3 = obj3.search(resp.text)</span><br><span class="line">    lst2.append(result3.group(<span class="string">&quot;ad&quot;</span>))</span><br><span class="line">    resp.close()</span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> lst2:</span><br><span class="line">    print(it)</span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="bs4"   >
+          <a href="#bs4" class="heading-link"><i class="fas fa-link"></i></a><a class="markdownIt-Anchor" href="#bs4"></a> Bs4</h1>
+      
+<p>一种根据页面源码标签取数据的方法</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一些简介</span></span><br><span class="line">BeautifulSoup(内容, <span class="string">&quot;类型&quot;</span>) <span class="comment">#后面这个参数非必须</span></span><br><span class="line">.prettify() <span class="comment">#输出得到的soup对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#搜索方法一般用find和find_all，可以指定标签和属性</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以用get得到对应的属性内容</span></span><br></pre></td></tr></table></div></figure>
+<p>这是一个取图片的例子</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;https://www.umei.cc/weimeitupian/&quot;</span></span><br><span class="line">resp = requests.get(url)</span><br><span class="line">resp.encoding = <span class="string">&quot;utf-8&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(resp.text)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#bs4，通过标签找，一般用find或者find_all，find_all返回的是一个列表。后面这个参数是指定类型</span></span><br><span class="line">page = BeautifulSoup(resp.text, <span class="string">&quot;html.parser&quot;</span>)</span><br><span class="line">lst = page.find_all(<span class="string">&quot;ul&quot;</span>, class_=<span class="string">&quot;pic-list after&quot;</span>)  <span class="comment">#返回符合条件的ul标签内容</span></span><br><span class="line">lst2 = []</span><br><span class="line"></span><br><span class="line"><span class="comment">#从中取出所有img标签</span></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> lst:</span><br><span class="line">    lstt = it.find_all(<span class="string">&quot;img&quot;</span>)</span><br><span class="line">    lst2.extend((lstt))</span><br><span class="line"></span><br><span class="line"><span class="comment">#从img标签中取属性</span></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> lst2:</span><br><span class="line">    print(it.get(<span class="string">&quot;data-src&quot;</span>))</span><br><span class="line">    <span class="comment">#print(it[&quot;data-src&quot;])</span></span><br><span class="line"></span><br><span class="line">resp.close()</span><br></pre></td></tr></table></div></figure>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://956256648.github.io/tags/Python/">Python</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://956256648.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2022/08/16/Python/Python%E5%88%9D%E5%AD%A6%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"><span class="paginator-prev__text">Python初学注意事项</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#web%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">
+           Web请求过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B8%B2%E6%9F%93"><span class="toc-number">1.1.</span> <span class="toc-text">
+           服务器渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93"><span class="toc-number">1.2.</span> <span class="toc-text">
+           客户端渲染</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.</span> <span class="toc-text">
+           HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-number">2.1.</span> <span class="toc-text">
+           请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E9%87%8C%E7%9A%84%E9%87%8D%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.</span> <span class="toc-text">
+           请求头里的重要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94"><span class="toc-number">2.3.</span> <span class="toc-text">
+           响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%A4%B4%E9%87%8C%E7%9A%84%E9%87%8D%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">2.4.</span> <span class="toc-text">
+           响应头里的重要内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#requests%E5%85%A5%E9%97%A8"><span class="toc-number">3.</span> <span class="toc-text">
+           requests入门</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fre"><span class="toc-number">4.</span> <span class="toc-text">
+           正则表达式RE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#re%E6%A8%A1%E5%9D%97"><span class="toc-number">5.</span> <span class="toc-text">
+           RE模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bs4"><span class="toc-number">6.</span> <span class="toc-text">
+           Bs4</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/header.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">但盼风雨来 能留你在此</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">97</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">26</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">72</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Fantasy</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><script type="text/x-mathjax-config">var mathjaxMhchem = '';
+var mathJaxTex = {
+  equationNumbers: {
+    autoNumber: 'AMS'
+  }
+};
+
+if (false) {
+  mathjaxMhchem = 'https://cdn.jsdelivr.net/npm/mathjax-mhchem@3.3.2/mhchem.min.js';
+  MathJax.Ajax.config.path['mhchem'] = mathjaxMhchem;
+
+  mathJaxTex.extensions = [mathjaxMhchem];
+} else {
+  mathJaxTex.extensions = ['AMSmath.js','AMSsymbols.js'];
+}
+
+MathJax.Hub.Config({
+  menuSettings: {
+    zoom: 'None'
+  },
+  showMathMenu: false,
+  jax: ['input/TeX','output/CommonHTML'],
+  extensions: ['tex2jax.js'],
+  TeX: mathJaxTex,
+  tex2jax: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+});
+
+MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+  MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+    if (data.display) {
+      var next = data.script.nextSibling;
+      while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling; }
+      if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next); }
+    }
+  });
+});
+
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i = 0; i < all.length; i++) {
+    document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'https://956256648.github.io/2022/08/20/Python/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
